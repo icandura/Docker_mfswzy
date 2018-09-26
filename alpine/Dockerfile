@@ -5,7 +5,7 @@ RUN set -ex \
     && if [ $(wget -qO- ipinfo.io/country) == CN ]; then echo "http://mirrors.aliyun.com/alpine/latest-stable/main/" > /etc/apk/repositories ;fi \
     && apk --update add --no-cache bash wget libsodium py-pip libnet-dev libpcap-dev tzdata musl-dev openssh pwgen apache2 \
     && cp -r -f /usr/share/zoneinfo/Hongkong /etc/localtime \
-    && pip --no-cache-dir install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip
+    && pip --no-cache-dir install https://gitee.com/511311/ss/raw/master/shadowsocksr-manyuser.zip
 
 RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa && \
     sed -ri 's/^#PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
