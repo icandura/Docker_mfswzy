@@ -19,4 +19,4 @@ echo "========================================================================"
 
 #nohup /usr/sbin/httpd -DFOREGROUND &
 nohup /usr/sbin/sshd -D &
-nohup /usr/local/bin/net_speeder eth0 "ip" >/dev/null 2>&1 &
+nohup /usr/local/bin/net_speeder eth0 "ip" >/dev/null 2>&1
