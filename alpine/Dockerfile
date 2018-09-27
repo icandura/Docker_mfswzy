@@ -11,7 +11,7 @@ RUN set -ex \
 
 RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa && \
     sed -ri 's/^#PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-# echo "root:${PASSWORD}" | chpasswd && \
+# echo "root:${ROOT_PASS}" | chpasswd && \
     mkdir -p /run/apache2 && \
     chown -R apache:apache /run/apache2
 
