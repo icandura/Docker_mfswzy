@@ -21,8 +21,8 @@ RUN chmod +x /usr/local/bin/net_speeder
 RUN mkdir -p /etc/supervisor/conf.d/ /var/log/supervisor/
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-# COPY entrypoint.sh /usr/local/bin/
-# RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 22
 EXPOSE 18388
