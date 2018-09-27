@@ -11,7 +11,7 @@ RUN set -ex \
 
 RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa && \
     sed -ri 's/^#PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-    echo "root:${PASSWORD}" | chpasswd && \
+# echo "root:${PASSWORD}" | chpasswd && \
     mkdir -p /run/apache2 && \
     chown -R apache:apache /run/apache2
 
@@ -20,8 +20,14 @@ RUN chmod +x /usr/local/bin/net_speeder
 
 RUN mkdir -p /etc/supervisor/conf.d/ /var/log/supervisor/
 COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY supervisord.conf.bak /etc/supervisor/supervisord.conf.bak
+
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 22
 EXPOSE 18388
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
