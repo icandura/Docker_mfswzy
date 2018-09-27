@@ -1,7 +1,7 @@
 #!/bin/sh
 
-PASS=${PASSWORD:-$(pwgen -s 12 1)}
-_word=$( [ ${PASSWORD} ] && echo "preset" || echo "random" )
+PASS=${ROOT_PASS:-$(pwgen -s 12 1)}
+_word=$( [ ${ROOT_PASS} ] && echo "preset" || echo "random" )
 echo $(date)
 echo "=> Setting a ${_word} password to the root user"
 echo "root:$PASS" | chpasswd
@@ -17,5 +17,4 @@ echo ""
 echo "Please remember to change the above password as soon as possible!"
 echo "========================================================================"
 
-#nohup /usr/sbin/httpd -DFOREGROUND &
-nohup /usr/sbin/sshd -D
+/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
